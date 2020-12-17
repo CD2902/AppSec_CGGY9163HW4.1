@@ -1,0 +1,9 @@
+Part 4. While using burp suite to see each request and added my authorization token to log in to get the user response, I notice one interesting when testing the request listed in the CardInterface.kt. I was able to see my cards that contain a card I recently purchased by sending a get request, GET https://appsecclass.report/api/cards ) and made it disappear when using PUT https://appsecclass.report/api/use/{card_number}  since its making an update to the server  
+Making the request within my browser, capture it with brup suit and change the parameter worked successfully.
+So, test this vulnerability, I created account and bought a lot of giftcards. Then I called a put request to a different user to use a card that that was purchase by the first user I created. After initiated the request I logout back to the user and saw the user card was gone.
+
+Fixes: 
+Their two fixies that could be implement 
+
+1) whenever buy a card it creates a random number that small and increment. I believe we should hash it into a large number for attackers to have a hard number to iterate.
+2) fix that work is if the server side validate that card the user uses it his card when the user buys since you see what available card that the user uses.  

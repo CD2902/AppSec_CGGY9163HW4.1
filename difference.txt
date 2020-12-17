@@ -1,0 +1,2 @@
+The intents demonstrated in the assignment, SecondFragment.kt and ThirdFragment.kt, the proper way we should do the intent is the explicit intent within the ThirdFrament.kt
+We want to use explicit intent on the SecondFragment.kt to specify calling to scrollingprofile activty instead> It seems not doing so will active the activity that opens the browser that displays the Json response of the GiftCard Server

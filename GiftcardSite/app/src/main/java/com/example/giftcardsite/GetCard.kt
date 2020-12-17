@@ -28,8 +28,9 @@ class GetCard : AppCompatActivity() {
         var image : CircleImageView = findViewById(R.id.image_view)
         val product : Product? = intent.getParcelableExtra("Product")
         findViewById<EditText>(R.id.amount).hint = product?.recommendedPrice.toString()
-        Glide.with(this).asBitmap().load("http://appsecclass.report/" + product?.productImageLink).into(image)
+        Glide.with(this).asBitmap().load("https://appsecclass.report/" + product?.productImageLink).into(image)
         val productNumber : Int? = product?.productId
+        Log.d("Product ID", productNumber.toString())
         val loggedInUser : User? = intent.getParcelableExtra("User")
         var token : String = "Token " + loggedInUser?.token.toString()
         Log.d("Token check", token)
@@ -37,7 +38,7 @@ class GetCard : AppCompatActivity() {
 
         findViewById<Button>(R.id.submit_buy).setOnClickListener{
             val amount : Int = parseInt(findViewById<EditText>(R.id.amount).text.toString())
-            var builder: Retrofit.Builder = Retrofit.Builder().baseUrl("http://appsecclass.report").addConverterFactory(GsonConverterFactory.create())
+            var builder: Retrofit.Builder = Retrofit.Builder().baseUrl("https://appsecclass.report").addConverterFactory(GsonConverterFactory.create())
             var retrofit: Retrofit = builder.build()
             var client: CardInterface = retrofit.create(CardInterface::class.java)
             var card: Card? = null
@@ -61,7 +62,7 @@ class GetCard : AppCompatActivity() {
                         Log.d("Buy Success", "Token:$token")
                     }
                     var intent = Intent(outerContext, ProductScrollingActivity::class.java)
-                    //intent.type = "text/giftcards"
+                    intent.type = "text/giftcards"
                     intent.putExtra("User", loggedInUser);
                     startActivity(intent)
                 }
